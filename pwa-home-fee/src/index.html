@@ -21,7 +21,7 @@
           <label>🏢 当月物业费金额<input id="calc-property-amount" required type="number" step="0.0001" min="0" /></label>
 
           <details class="adv span-2">
-            <summary>🛠 可选：覆盖当次单价/比例</summary>
+            <summary>🛠️ 可选：覆盖当次单价/比例</summary>
             <div class="compact-grid">
               <label>💧 水费单价<input id="calc-water-price" type="number" step="0.0001" min="0" /></label>
               <label>⚡ 电费单价<input id="calc-electric-price" type="number" step="0.0001" min="0" /></label>
@@ -36,9 +36,9 @@
         <div class="result-head">
           <h3>📋 结算明细</h3>
         </div>
-        <textarea id="result-box" rows="10" class="mono result-area" placeholder="计算后会在这里生成明细"></textarea>
+        <textarea id="result-box" rows="10" class="mono result-area" placeholder="计算后会在这里生成明细" readonly></textarea>
         <div class="row compact-row">
-          <button id="btn-copy" class="btn">复制明细</button>
+          <button id="btn-copy" class="btn ghost" type="button">复制明细</button>
         </div>
       </section>
 
@@ -47,45 +47,51 @@
         <div id="history-list" class="history-list"></div>
       </section>
 
-      <section id="page-settings" class="page card compact-card">
+      <section id="page-config" class="page card compact-card">
         <h2>⚙️ 配置</h2>
-        <p class="hint">🧩 初始化只需一次，后续可在结算页临时覆盖单价/比例。</p>
+        <p class="muted">初始化只需要做一次。后续如需调整单价或比例，可在本页重设，或在结算页临时覆盖。</p>
 
         <form id="init-form" class="form-grid compact-form">
-          <label class="span-2" for="init-date">📅 初始化日期（起始日）<input id="init-date" type="date" required /></label>
+          <label class="span-2">📅 初始化日期（起始日）<input id="init-date" type="date" required /></label>
           <label>💧 初始水表读数<input id="init-water" required type="number" step="0.0001" min="0" /></label>
           <label>⚡ 初始电表读数<input id="init-electric" required type="number" step="0.0001" min="0" /></label>
           <label>🔥 初始燃气表读数<input id="init-gas" required type="number" step="0.0001" min="0" /></label>
           <label>💧 水费单价<input id="init-water-price" required type="number" step="0.0001" min="0" /></label>
           <label>⚡ 电费单价<input id="init-electric-price" required type="number" step="0.0001" min="0" /></label>
           <label>🔥 燃气单价<input id="init-gas-price" required type="number" step="0.0001" min="0" /></label>
-          <label>🏢 物业费比例<input id="init-property-ratio" required type="number" step="0.0001" min="0" /></label>
+          <label class="span-2">🏢 物业费比例<input id="init-property-ratio" required type="number" step="0.0001" min="0" /></label>
           <button class="btn primary span-2" type="submit">保存初始化</button>
         </form>
 
-        <h3>📌 当前状态</h3>
-        <div id="state-box" class="status-grid"></div>
-
-        <div class="row compact-row">
-          <button id="btn-export" class="btn">导出备份</button>
-          <button id="btn-import" class="btn">导入备份</button>
-          <button id="btn-clear" class="btn danger">清空数据</button>
-          <input id="import-file" type="file" accept="application/json" hidden />
+        <div class="status-grid">
+          <div class="status-card">
+            <div class="status-title">当前状态</div>
+            <div id="state-box" class="status-body"></div>
+          </div>
+          <div class="status-card">
+            <div class="status-title">可复制明细</div>
+            <textarea id="status-copy" class="mono result-area" rows="10" readonly placeholder="计算后会在这里生成可复制明细"></textarea>
+            <div class="row compact-row">
+              <button id="btn-export" class="btn ghost" type="button">导出备份</button>
+              <button id="btn-import" class="btn ghost" type="button">导入备份</button>
+              <button id="btn-clear" class="btn danger" type="button">清空数据</button>
+            </div>
+            <button id="copy-status" class="btn ghost" type="button">复制明细</button>
+          </div>
         </div>
+
         <p class="build-foot">版本 Build 2026-03-22.7</p>
       </section>
     </main>
 
-    <nav class="bottom-nav">
-      <button type="button" class="tab active" data-page="calc">🧾 结算</button>
-      <button type="button" class="tab" data-page="history">📚 历史</button>
-      <button type="button" class="tab" data-page="settings">⚙️ 配置</button>
+    <nav class="bottom-nav" aria-label="主导航">
+      <button class="tab active" data-page="calc" type="button">🧾 结算</button>
+      <button class="tab" data-page="history" type="button">📚 历史</button>
+      <button class="tab" data-page="config" type="button">⚙️ 配置</button>
     </nav>
 
-    <p id="toast" class="toast" hidden></p>
-    <script type="module" src="./app.js"></script>
+    <input id="import-file" type="file" accept="application/json" hidden />
+    <div id="toast" class="toast" hidden></div>
+    <script src="./app.js"></script>
   </body>
 </html>
-
-
-
