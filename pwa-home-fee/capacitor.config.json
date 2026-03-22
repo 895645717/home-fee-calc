@@ -1,0 +1,16 @@
+﻿{
+  "appId": "com.zhouqiyu.homefee",
+  "appName": "生活费计算器",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "cleartext": true
+  },
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "DARK",
+      "backgroundColor": "#ffffffff"
+    }
+  }
+}
