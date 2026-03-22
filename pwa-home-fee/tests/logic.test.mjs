@@ -1,11 +1,11 @@
-﻿import assert from "node:assert/strict";
+import assert from "node:assert/strict";
 import {
   buildInitialState,
   calcMonth,
   buildCopyText,
   readState,
   writeState,
-} from "./logic.js";
+} from "../src/logic.js";
 
 const init = buildInitialState({
   date: "2026-03-01",

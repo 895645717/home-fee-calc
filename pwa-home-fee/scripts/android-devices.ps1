@@ -5,7 +5,7 @@ $platformTools = Join-Path $sdk "platform-tools"
 $adb = Join-Path $platformTools "adb.exe"
 
 if (-not (Test-Path $adb)) {
-  throw "未找到 adb：$adb"
+  throw "adb not found: $adb"
 }
 
 $env:ANDROID_HOME = $sdk

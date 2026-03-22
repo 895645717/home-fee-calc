@@ -3,14 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node logic.test.mjs",
-    "serve": "python -m http.server 4173",
-    "build:app": "node scripts-build-dist.cjs",
+    "test": "node tests/logic.test.mjs",
+    "serve": "python -m http.server 4173 --directory dist",
+    "build:app": "node scripts/build-dist.cjs",
     "cap:sync": "npm run build:app && npx cap sync android",
     "cap:open": "npx cap open android",
-    "android:live": "powershell -ExecutionPolicy Bypass -File .\\scripts-android-live.ps1",
+    "android:live": "powershell -ExecutionPolicy Bypass -File .\\scripts\\android-live.ps1",
     "android:live:first": "npm run cap:sync && npm run android:live",
-    "android:devices": "powershell -ExecutionPolicy Bypass -File .\\scripts-android-devices.ps1"
+    "android:devices": "powershell -ExecutionPolicy Bypass -File .\\scripts\\android-devices.ps1",
+    "pwa:start": "powershell -ExecutionPolicy Bypass -File .\\scripts\\start-pwa.ps1",
+    "pwa:check": "powershell -ExecutionPolicy Bypass -File .\\scripts\\check-pwa.ps1",
+    "pwa:ensure": "powershell -ExecutionPolicy Bypass -File .\\scripts\\ensure-pwa.ps1",
+    "pwa:stop": "powershell -ExecutionPolicy Bypass -File .\\scripts\\stop-pwa.ps1"
   },
   "devDependencies": {
     "@capacitor/android": "^8.2.0",

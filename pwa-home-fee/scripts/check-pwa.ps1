@@ -1,12 +1,11 @@
-﻿param(
+param(
   [int]$Port = 4173
 )
 
 function Get-LanIp {
-  $ipconfigOutput = ipconfig
-  $match = $ipconfigOutput | Select-String "IPv4 Address.*:"
+  $match = ipconfig | Select-String "IPv4 Address.*:"
   if ($match) {
-    return ($match | Select-Object -First 1).ToString().Split(':')[-1].Trim()
+    return ($match | Select-Object -First 1).ToString().Split(":")[-1].Trim()
   }
   return "127.0.0.1"
 }
